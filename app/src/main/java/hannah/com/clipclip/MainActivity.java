@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -37,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_floating_action)
     FloatingActionButton btn_floating_action;
+
+    @BindView(R.id.btn_service)
+    ImageButton btn_service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("mode", Con.NEW_MODE);
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
+        });
+
+        btn_service.setOnClickListener(v->{
+            startService(new Intent(this, ClipboardService.class));
         });
     }
 
